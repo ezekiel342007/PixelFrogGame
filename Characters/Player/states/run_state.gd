@@ -18,9 +18,11 @@ func on_physics_process(_delta: float) -> void:
 
 	player_body_2d.face_direction(direction)
 
-	animated_sprite_2d.flip_h = false
-
 	player_body_2d.move_and_slide()
+
+	# Transition to Idle State
+	if player_body_2d.velocity.x == 0:
+		transition.emit("IdleState")
 
 	# Transition to Jump State
 	if GameInput.jump_input():
