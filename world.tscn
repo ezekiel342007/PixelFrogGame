@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://calm6y4jtbhfa"]
+[gd_scene load_steps=6 format=4 uid="uid://calm6y4jtbhfa"]
 
 [ext_resource type="Texture2D" uid="uid://yrh6576aei3k" path="res://Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_cyxy6"]
 [ext_resource type="PackedScene" uid="uid://bx5uenwxm3f01" path="res://Obstacles/box.tscn" id="2_lkmsw"]
 [ext_resource type="PackedScene" uid="uid://doqnvgslkh1la" path="res://Characters/Player/player.tscn" id="2_sqc1j"]
-[ext_resource type="PackedScene" uid="uid://mybmw2t73010" path="res://Characters/ninja_frog.tscn" id="4_d47di"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_841pr"]
 texture = ExtResource("1_cyxy6")
@@ -168,10 +167,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAAAAAEAAAAGAAEAAAABAAAAAAAHAAA
 tile_set = SubResource("TileSet_eufp0")
 
 [node name="Box" parent="TileMapLayer" instance=ExtResource("2_lkmsw")]
-position = Vector2(31, 13)
-
-[node name="NinjaFrog" parent="." instance=ExtResource("4_d47di")]
-position = Vector2(114, 36)
+position = Vector2(47, -39)
 
 [node name="Player" parent="." instance=ExtResource("2_sqc1j")]
-position = Vector2(237, 39)
+position = Vector2(249, -51)
