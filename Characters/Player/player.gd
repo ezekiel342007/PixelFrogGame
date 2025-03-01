@@ -3,13 +3,10 @@ class_name Player
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-
-const SPEED = 3200.0
+const SPEED = 3800.0
 const JUMP_VELOCITY = -400.0
 
-
-func _ready() -> void:
-	print(get_script().get_global_name())
+var double_jump: bool = false
 
 
 func _physics_process(delta: float) -> void:

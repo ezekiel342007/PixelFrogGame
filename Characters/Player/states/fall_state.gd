@@ -21,5 +21,9 @@ func on_physics_process(_delta: float) -> void:
 	player_body_2d.face_direction(direction)
 	player_body_2d.move_and_slide()
 
+	if !player_body_2d.is_on_floor() and GameInput.jump_input():
+		transition.emit("DoubleJumpState")
+
+
 func exit() -> void:
 	animated_sprite_2d.stop()

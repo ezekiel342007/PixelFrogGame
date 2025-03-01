@@ -7,6 +7,7 @@ extends NodeState
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:
 	animated_sprite_2d.play("run")
+	player_body_2d.double_jump = false
 
 
 func on_physics_process(_delta: float) -> void:

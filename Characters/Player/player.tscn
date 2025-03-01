@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://doqnvgslkh1la"]
+[gd_scene load_steps=48 format=3 uid="uid://doqnvgslkh1la"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_klvgq"]
 [ext_resource type="Texture2D" uid="uid://bjc4os7x327j1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Idle (32x32).png" id="1_ti688"]
 [ext_resource type="Texture2D" uid="uid://cwbyk6b5wcju1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Fall (32x32).png" id="2_4wsit"]
+[ext_resource type="Texture2D" uid="uid://b60uksbbcgh44" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Double Jump (32x32).png" id="2_gb2w4"]
 [ext_resource type="Script" path="res://Characters/Player/states/state_machine_controller.gd" id="3_cp5aw"]
 [ext_resource type="Texture2D" uid="uid://b1163mo4nkkuw" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Jump (32x32).png" id="3_e8t7u"]
 [ext_resource type="Script" path="res://Scripts/node_finite_state_machine.gd" id="3_mcxs6"]
@@ -11,10 +12,35 @@
 [ext_resource type="Script" path="res://Characters/Player/states/fall_state.gd" id="5_s2rth"]
 [ext_resource type="Script" path="res://Characters/Player/states/jump_state.gd" id="6_2otxx"]
 [ext_resource type="Script" path="res://Characters/Player/states/run_state.gd" id="7_kosoa"]
+[ext_resource type="Script" path="res://Characters/Player/states/double_jump_state.gd" id="12_871h4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8702r"]
 radius = 9.0
 height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2idy8"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_god35"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ha5"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6cta"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c1b4"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqhjk"]
+atlas = ExtResource("2_gb2w4")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg5je"]
 atlas = ExtResource("2_4wsit")
@@ -118,6 +144,29 @@ region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1fakh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2idy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_god35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ha5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6cta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c1b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqhjk")
+}],
+"loop": false,
+"name": &"double_jump",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dg5je")
@@ -226,7 +275,9 @@ shape = SubResource("CapsuleShape2D_8702r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1fakh")
-animation = &"idle"
+animation = &"double_jump"
+frame = 5
+frame_progress = 1.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 
@@ -263,6 +314,11 @@ script = ExtResource("7_kosoa")
 player_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="DoubleJump" type="Node" parent="StateMachine"]
+[node name="DoubleJumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player_body_2d", "animated_sprite_2d")]
+script = ExtResource("12_871h4")
+player_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Node" type="Node" parent="StateMachine"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
