@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class NodeFiniteStateMachineCS: Node
+public partial class NodeFiniteStateMachine: Node
 {
 	private static NodeState currentNodeState;
 	private static string currentNodeStateName;
@@ -23,19 +23,19 @@ public partial class NodeFiniteStateMachineCS: Node
 		}
 	}
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		if (currentNodeState != null)
 			currentNodeState.OnProcess(delta);
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		if (currentNodeState != null)
 			currentNodeState.OnPhysicsProcess(delta);
-    }
+	}
 
-    public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if (currentNodeState != null)
 			currentNodeState.Input(@event);

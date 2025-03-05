@@ -2,8 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var state_machine: NodeFiniteStateMachine = $StateMachine
 
-const SPEED = 3800.0
+const SPEED = 1000.0
+const MAX_SPEED = 4000.0
 const JUMP_VELOCITY = -400.0
 
 var double_jump: bool = false
@@ -11,7 +13,7 @@ var double_jump: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and state_machine.current_node_state_name != "WallJumpState":
 		velocity += get_gravity() * delta
 	move_and_slide()
 

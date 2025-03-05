@@ -4,7 +4,6 @@ extends NodeState
 @export var animated_sprite_2d: AnimatedSprite2D
 
 @export_category("Double Jump")
-@export var jump_height: float = -250
 @export var jump_velocity: float = -250
 @export var horizontal_distance: float = 800
 @export var horizontal_speed: float = 700
@@ -18,7 +17,7 @@ func on_physics_process(_delta: float) -> void:
 	player_body_2d.velocity += player_body_2d.get_gravity() * _delta
 
 	if !player_body_2d.double_jump:
-		player_body_2d.velocity.y = jump_velocity
+		player_body_2d.velocity.y = jump_velocity + (player_body_2d.JUMP_VELOCITY/2.0)
 		player_body_2d.double_jump = true
 
 	var direction: float = GameInput.run_input()

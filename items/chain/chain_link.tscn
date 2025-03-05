@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd7hb3occmj44"]
+
+[ext_resource type="Script" path="res://items/chain/ChainLink.cs" id="1_5u0f5"]
+
+[node name="ChainLink" type="Sprite2D"]
+script = ExtResource("1_5u0f5")

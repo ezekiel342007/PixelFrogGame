@@ -1,15 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx5uenwxm3f01"]
+[gd_scene load_steps=15 format=3 uid="uid://bx5uenwxm3f01"]
 
+[ext_resource type="Texture2D" uid="uid://5tjstjo3dpsr" path="res://Pixel Adventure 1/Free/Items/Boxes/Box1/Break.png" id="1_4ny68"]
 [ext_resource type="Texture2D" uid="uid://bt0mf05fbh5mx" path="res://Pixel Adventure 1/Free/Items/Boxes/Box1/Idle.png" id="1_p8g7n"]
+[ext_resource type="Texture2D" uid="uid://ct76254gxb6cq" path="res://Pixel Adventure 1/Free/Items/Boxes/Box1/Hit (28x24).png" id="3_dwfdb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ggbad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00ey4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy81o"]
+atlas = ExtResource("1_4ny68")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1xcb"]
+atlas = ExtResource("1_4ny68")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b3le"]
+atlas = ExtResource("1_4ny68")
+region = Rect2(56, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0sbe"]
+atlas = ExtResource("1_4ny68")
+region = Rect2(84, 0, 28, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksv34"]
 atlas = ExtResource("1_p8g7n")
 region = Rect2(0, 0, 28, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_adbun"]
+atlas = ExtResource("3_dwfdb")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r18c4"]
+atlas = ExtResource("3_dwfdb")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2br1"]
+atlas = ExtResource("3_dwfdb")
+region = Rect2(56, 0, 28, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mjgti"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy81o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1xcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b3le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0sbe")
+}],
+"loop": true,
+"name": &"break",
+"speed": 9.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ksv34")
@@ -17,14 +66,31 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adbun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r18c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2br1")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
 }]
 
 [node name="Box" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_ggbad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_00ey4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mjgti")
+animation = &"break"
+frame_progress = 0.466135
