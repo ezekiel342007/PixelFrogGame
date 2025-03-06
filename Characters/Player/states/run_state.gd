@@ -13,8 +13,9 @@ func enter() -> void:
 func on_physics_process(_delta: float) -> void:
 	var direction: float = GameInput.run_input()
 	if direction:
-		player_body_2d.velocity.x += direction * player_body_2d.SPEED
-		player_body_2d.velocity.x = clamp(player_body_2d.velocity.x, -player_body_2d.MAX_SPEED * _delta, player_body_2d.MAX_SPEED * _delta)
+		player_body_2d.velocity.x = direction * player_body_2d.SPEED * _delta
+		if GameInput.super_input():
+			player_body_2d.velocity.x = direction * player_body_2d.RUN_SPEED * _delta
 	else:
 		player_body_2d.velocity.x = move_toward(player_body_2d.velocity.x, 0, player_body_2d.SPEED * _delta)
 

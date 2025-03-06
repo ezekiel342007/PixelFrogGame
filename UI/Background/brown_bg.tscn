@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfnd3no3thkld"]
+
+[ext_resource type="Texture2D" uid="uid://dngal6xte0ao8" path="res://Pixel Adventure 1/Free/Background/Brown.png" id="1_lm3en"]
+
+[node name="BrownBG" type="Sprite2D"]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("1_lm3en")
+centered = false

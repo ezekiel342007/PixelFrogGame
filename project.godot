@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameInput="*res://Scripts/game_input.gd"
 
+[display]
+
+window/size/viewport_width=576
+window/size/viewport_height=324
+
 [dotnet]
 
 project/assembly_name="Swing Low (Prototype)"
@@ -54,6 +59,7 @@ super={
 2d_physics/layer_4="OBSTACLE"
 2d_physics/layer_5="EXTRA"
 2d_physics/layer_6="COLLECTIBLE"
+2d_physics/layer_7="LETHAL"
 
 [rendering]
 

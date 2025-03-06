@@ -1,11 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: NodeFiniteStateMachine = $StateMachine
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-const SPEED = 1000.0
-const MAX_SPEED = 4000.0
+const SPEED = 6000.0
+const RUN_SPEED = 8000.0
 const JUMP_VELOCITY = -400.0
 
 var double_jump: bool = false

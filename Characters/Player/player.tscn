@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://doqnvgslkh1la"]
+[gd_scene load_steps=57 format=3 uid="uid://doqnvgslkh1la"]
 
 [ext_resource type="Texture2D" uid="uid://bjc4os7x327j1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Idle (32x32).png" id="1_ti688"]
 [ext_resource type="Texture2D" uid="uid://cwbyk6b5wcju1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Fall (32x32).png" id="2_4wsit"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bcy4sydv71yi4" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Wall Jump (32x32).png" id="7_vepsb"]
 [ext_resource type="Script" path="res://Characters/Player/states/double_jump_state.gd" id="12_871h4"]
 [ext_resource type="Script" path="res://Characters/Player/states/wall_jump_state.gd" id="15_ggyu0"]
+[ext_resource type="PackedScene" uid="uid://cjvrvujtw1tlu" path="res://GameScreen.tscn" id="16_nxedv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8702r"]
 radius = 9.0
@@ -311,6 +312,8 @@ height = 27.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xms4s"]
 
 [node name="PlayerBody" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 125
 script = ExtResource("2_5upxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -323,6 +326,8 @@ animation = &"wall_jump"
 frame_progress = 0.185139
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 4)
@@ -367,8 +372,6 @@ script = ExtResource("15_ggyu0")
 player_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="CollectibleSensor" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
@@ -376,3 +379,5 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleSensor"]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_xms4s")
+
+[node name="Camera2D" parent="." instance=ExtResource("16_nxedv")]

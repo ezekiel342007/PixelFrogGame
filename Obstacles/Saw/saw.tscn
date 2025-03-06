@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://dehvf1vvdtmqt"]
+
+[ext_resource type="Script" path="res://Obstacles/Saw/Saw.cs" id="1_vx67g"]
+[ext_resource type="Texture2D" uid="uid://bcyfg6hucr1se" path="res://Pixel Adventure 1/Free/Traps/Saw/Off.png" id="2_ijou4"]
+[ext_resource type="Texture2D" uid="uid://bywgol6j2cb5q" path="res://Pixel Adventure 1/Free/Traps/Saw/On (38x38).png" id="3_rlmmq"]
+
+[sub_resource type="Curve2D" id="Curve2D_f6wh1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 241, -10, 0, 0, 0, 0, 19, -12)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wlwje"]
+radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vkq0"]
+atlas = ExtResource("2_ijou4")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31pkt"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyuno"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upttf"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnqjq"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ossw6"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcxkj"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtls5"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ht1u"]
+atlas = ExtResource("3_rlmmq")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8ig7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vkq0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31pkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyuno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upttf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnqjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ossw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcxkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtls5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ht1u")
+}],
+"loop": true,
+"name": &"running",
+"speed": 24.0
+}]
+
+[node name="Saw" type="Path2D"]
+curve = SubResource("Curve2D_f6wh1")
+script = ExtResource("1_vx67g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(241, -10)
+rotation = -3.13258
+loop = false
+
+[node name="SawBody" type="AnimatableBody2D" parent="PathFollow2D"]
+collision_layer = 64
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/SawBody"]
+shape = SubResource("CircleShape2D_wlwje")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/SawBody"]
+sprite_frames = SubResource("SpriteFrames_l8ig7")
+animation = &"running"
+autoplay = "running"
+frame_progress = 0.420943

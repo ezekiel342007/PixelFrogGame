@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4qqftoo52w30"]
+
+[ext_resource type="Texture2D" uid="uid://c435wrfakwgpg" path="res://Pixel Adventure 1/Free/Traps/Saw/Chain.png" id="1_u3tut"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrjof"]
+
+[node name="Chain" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lrjof")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u3tut")

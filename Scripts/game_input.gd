@@ -15,4 +15,4 @@ func jump_input() -> bool:
 
 
 func super_input() -> bool:
-	return Input.is_action_just_pressed("super")
+	return Input.is_action_pressed("super")
