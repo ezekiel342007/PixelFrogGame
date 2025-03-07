@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://doqnvgslkh1la"]
+[gd_scene load_steps=66 format=3 uid="uid://doqnvgslkh1la"]
 
 [ext_resource type="Texture2D" uid="uid://bjc4os7x327j1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Idle (32x32).png" id="1_ti688"]
 [ext_resource type="Texture2D" uid="uid://cwbyk6b5wcju1" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Fall (32x32).png" id="2_4wsit"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1163mo4nkkuw" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Jump (32x32).png" id="3_e8t7u"]
 [ext_resource type="Script" path="res://Scripts/node_finite_state_machine.gd" id="3_mcxs6"]
 [ext_resource type="Texture2D" uid="uid://dlf4cnvykwts" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Run (32x32).png" id="3_umqcc"]
+[ext_resource type="Texture2D" uid="uid://bquu348vx0dtm" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Hit (32x32).png" id="4_6tnh2"]
 [ext_resource type="Script" path="res://Characters/Player/states/idle_state.gd" id="4_43voy"]
 [ext_resource type="Script" path="res://Characters/Player/states/fall_state.gd" id="5_s2rth"]
 [ext_resource type="Script" path="res://Characters/Player/states/jump_state.gd" id="6_2otxx"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bcy4sydv71yi4" path="res://Pixel Adventure 1/Free/Main Characters/Virtual Guy/Wall Jump (32x32).png" id="7_vepsb"]
 [ext_resource type="Script" path="res://Characters/Player/states/double_jump_state.gd" id="12_871h4"]
 [ext_resource type="Script" path="res://Characters/Player/states/wall_jump_state.gd" id="15_ggyu0"]
+[ext_resource type="Script" path="res://Characters/Player/states/hurt_state.gd" id="16_7gq7i"]
 [ext_resource type="PackedScene" uid="uid://cjvrvujtw1tlu" path="res://GameScreen.tscn" id="16_nxedv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8702r"]
@@ -48,6 +50,34 @@ region = Rect2(160, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg5je"]
 atlas = ExtResource("2_4wsit")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50pvk"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8v2g"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq4hk"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qine6"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg4rx"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgpfq"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1rx6"]
+atlas = ExtResource("4_6tnh2")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qq2nx"]
 atlas = ExtResource("1_ti688")
@@ -200,6 +230,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_50pvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8v2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq4hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qine6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg4rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgpfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1rx6")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qq2nx")
 }, {
 "duration": 1.0,
@@ -322,8 +378,9 @@ shape = SubResource("CapsuleShape2D_8702r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1fakh")
-animation = &"wall_jump"
-frame_progress = 0.185139
+animation = &"hurt"
+frame = 1
+frame_progress = 0.921808
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -372,6 +429,12 @@ script = ExtResource("15_ggyu0")
 player_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
+[node name="HurtState" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurt_box", "player_body_2d", "animated_sprite_2d")]
+script = ExtResource("16_7gq7i")
+hurt_box = NodePath("../../HurtBox")
+player_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
 [node name="CollectibleSensor" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
@@ -381,3 +444,5 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_xms4s")
 
 [node name="Camera2D" parent="." instance=ExtResource("16_nxedv")]
+
+[connection signal="body_entered" from="HurtBox" to="StateMachineController" method="_on_hurt_box_body_entered"]

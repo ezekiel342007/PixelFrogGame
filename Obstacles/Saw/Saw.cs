@@ -27,7 +27,5 @@ public partial class Saw : Path2D
 			direction = -1.0f;
 
 		sawBody.GlobalPosition = visibleSaw.GlobalPosition;
-
-		/* 576 324*/
 	}
 }

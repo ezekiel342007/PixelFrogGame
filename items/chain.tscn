@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c435wrfakwgpg" path="res://Pixel Adventure 1/Free/Traps/Saw/Chain.png" id="1_u3tut"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrjof"]
+radius = 2.0
 
-[node name="Chain" type="StaticBody2D"]
+[node name="Chain" type="AnimatableBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lrjof")
